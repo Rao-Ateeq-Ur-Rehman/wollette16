@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_wollette.ScanQRPopup" owl="1">
+        <div class="popup coupons">
+            <t t-if="state.currentScreen == 'scan'">
+                <header class="coupon_header">
+                    <div class="header">
+                        <div class="scan_header">
+                            <h1>Scan Wollette QR or Barcode</h1>
+                        </div>
+                    </div>
+                </header>
+                <main class="body">
+                    <div class="logo_div" t-if="!state.coupon_scanning">
+                        <div class="wollettelogo" t-ref="wolletdiv">
+                            <img src="/pos_wollette/static/src/img/wolletelogo.png"/>
+                        </div>
+                    </div>
+                    <div id="reader"/>
+                </main>
+                <footer class="footer">
+                    <div class="footer_buttons" t-if="state.coupon_scanning == false">
+                        <div class="footer_left_button">
+                            <button class="wollette-button" t-on-click="cancel">Cancel</button>
+                        </div>
+                        <div class="footer_right_button" t-if="state.coupon_scanning == false">
+                            <button class="wollette-button" t-on-click="scanQRCodeNew">Use Camera</button>
+                        </div>
+                    </div>
+                    <button class="wollette-button" t-on-click="cancel" t-if="state.coupon_scanning == true">Cancel</button>
+                </footer>
+            </t>
+            <t t-elif="state.currentScreen == 'loading'">
+                <header>
+                    <div class="title">Processing</div>
+                </header>
+                <main class="body">
+                    <div class="wollette-div">
+                        <div class="wollette-loader"></div>
+                    </div>
+                </main>
+                <footer class="footer"></footer>
+            </t>
+            <t t-elif="state.currentScreen == 'error'">
+                <header>
+                    <div class="title">Unable to connect to Wollette</div>
+                </header>
+                <main class="body">
+                    <div>
+                        <img height="100px" width="100px" src="/pos_wollette/static/src/img/icons8-cancel-250.png"/>
+                    </div>
+                    <div id="wollette_error">
+                        <t t-esc="state.errorMessage"/>
+                    </div>
+                </main>
+                <footer class="footer">
+                    <div>
+                        <button class="wollette-button" t-on-click="() => { this.state.coupon_scanning = false; this.state.currentScreen = 'scan'; }">Retry</button>
+                    </div>
+                </footer>
+            </t>
+            <t t-elif="state.currentScreen == 'coupons'">
+                <header class="coupon_header">
+                    <div class="header">
+                        <div class="header_heading">
+                            <h1>Coupons</h1>
+                        </div>
+                        <div class="header_cart_price">
+                            <h1>Cart Price: £<t t-out="state.total_cart_price"/></h1>
+                        </div>
+                    </div>
+                </header>
+                <main class="body">
+                    <div>
+                        <div class="couponitem" t-foreach="validCoupons" t-as="coupon" t-key="coupon.id">
+                            <div class="coupon-content">
+                                <div class="heading">
+                                    <h3 class="discount_text" t-if="coupon.percentage"><t t-out="coupon.percentage"/>%</h3>
+                                    <h3 class="discount_text" t-if="coupon.amount">£<t t-out="coupon.amount"/></h3>
+                                    <p></p>
+                                </div>
+                                <div class="content">
+                                    <p class="coupon-description">
+                                        <t t-out="coupon.description"/>
+                                    </p>
+                                    <button class="btn apply_btn" t-if="!coupon.applied"
+                                            t-on-click="() => this.applyCoupon(coupon)">Apply</button>
+                                    <button class="btn remove_btn" t-if="coupon.applied"
+                                            t-on-click="() => this.removeCoupon(coupon)"
+                                            style="border:1px solid #FF4742 !important">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="footer">
+                    <div class="footer_buttons">
+                        <div class="footer_left_button">
+                            <button class="wollette-button2" t-on-click="cancel">Cancel</button>
+                        </div>
+                        <div class="footer_right_button">
+                            <button class="wollette-button" t-on-click="() => this.nextScreen('points')">Next</button>
+                            <button class="wollette-button" t-on-click="applyAllCoupons">Apply all</button>
+                        </div>
+                    </div>
+                </footer>
+            </t>
+            <t t-elif="state.currentScreen == 'points'">
+                <header class="coupon_header">
+                    <div class="header">
+                        <div class="header_heading">
+                            <h1>Points</h1>
+                        </div>
+                        <div class="header_cart_price">
+                            <h1>Cart Price: £<t t-out="state.total_cart_price"/></h1>
+                        </div>
+                    </div>
+                </header>
+                <main class="body">
+                    <div>
+                        <div class="couponitem">
+                            <t t-set="points" t-value="state.outstandingPoints"/>
+                                <div class="coupon-content">
+                                    <div class="heading">
+                                        <h3 class="discount_text">
+                                            <t t-esc="points.spent_points.toLocaleString(undefined, { minimumFractionDigits: 0 })"/>
+                                        </h3>
+                                    </div>
+                                    <div class="content">
+                                        <p class="coupon-description">
+                                            Redeem <t
+                                                t-out="points.spent_points.toLocaleString(undefined, { minimumFractionDigits: 0 })"/>
+                                                points to save
+                                            <t t-out="points.redemptionPolicy.amount.currencySymbol"/>
+                                            <t t-out="points.savings.toLocaleString(undefined, { minimumFractionDigits: 2 })"/>
+                                        </p>
+                                        <button class="btn apply_btn" t-on-click="applyPoints">Apply</button>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="footer">
+                    <div class="footer_buttons">
+                        <div class="footer_left_button">
+                            <button class="wollette-button2" t-on-click="cancel">Cancel</button>
+                        </div>
+                        <div class="footer_right_button">
+                            <button class="wollette-button" t-on-click="confirm">Next</button>
+                        </div>
+                    </div>
+                </footer>
+            </t>
+        </div>
+    </t>
+</templates>

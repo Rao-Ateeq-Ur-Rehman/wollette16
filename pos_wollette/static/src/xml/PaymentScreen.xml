@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="point_of_sale.PaymentScreen" t-inherit-mode="extension" owl="1">
+        <!-- <xpath expr="//div[hasclass('payment-buttons')]/div[hasclass('partner-button')]" position="after">
+            <div class="button" t-on-click="showQRScreen">
+                <i class="fa fa-qrcode" role="img" title="ScanQR" />
+                <span>
+                    Scan QR
+                </span>
+            </div>
+        </xpath> -->
+        <xpath expr="//div[contains(@class, 'button') and contains(@class, 'back')]" position="replace">
+            <div class="button back" t-on-click="() => this.back()">
+                <i class="fa fa-angle-double-left fa-fw"></i>
+                <span class="back_text">Back</span>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[hasclass('switchpane')]/button[contains(@class, 'btn-switchpane') and contains(@class, 'secondary')]" position="replace">
+            <button class="btn-switchpane secondary" t-on-click="() => this.back({mobile_pane: 'left'})">
+                <h1>Review</h1>
+            </button>
+        </xpath>
+    </t>
+</templates>

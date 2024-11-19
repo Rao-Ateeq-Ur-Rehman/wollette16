@@ -1,0 +1,318 @@
+.wollette-loader {
+    --d: 22px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    color: #0d72e8;
+    box-shadow:
+        calc(1*var(--d)) calc(0*var(--d)) 0 0,
+        calc(0.707*var(--d)) calc(0.707*var(--d)) 0 1px,
+        calc(0*var(--d)) calc(1*var(--d)) 0 2px,
+        calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+        calc(-1*var(--d)) calc(0*var(--d)) 0 4px,
+        calc(-0.707*var(--d)) calc(-0.707*var(--d))0 5px,
+        calc(0*var(--d)) calc(-1*var(--d)) 0 6px;
+    animation: l27 1s infinite steps(8);
+}
+.pos .modal-dialog .popup {
+    border-radius: 10px
+}
+.wollette-div {
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: -webkit-translate(-50%, -50%);
+    transform: -moz-translate(-50%, -50%);
+    transform: -ms-translate(-50%, -50%);
+}
+
+.wollette-button {
+    background-color: #0d72e8 !important;
+    color: white !important;
+    clear: both !important;
+    font-size: 1em !important;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.wollette-button2 {
+    background-color: white !important;
+    color: #0d72e8 !important;
+    clear: both !important;
+    font-size: 1em !important;
+    border-color: #0d72e8;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}
+.spacer_div{
+    margin-top:10px;
+}
+.couponitem {
+    background-color: #bedcff;
+    color: #0d72e8;
+    border-radius: 5px;
+}
+
+.coupon-description {
+    color: black;
+    text-align: left; /* Align text to the left */
+}
+
+div.coupons > div:nth-of-type(even) {
+    background-color: #bcc3d0;
+}
+
+/*
+.coupons {
+    overflow-y:auto;
+    height: 75%;
+}
+*/
+
+.header, .footer {
+    flex-shrink: 0;
+}
+
+.coupons {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    max-height: 70%;
+    overflow-y: auto;
+}
+
+.couponbutton {
+    color: #0d72e8;
+    float:right;
+    margin: 5px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.couponbutton a {
+    color: #0d72e8;
+}
+
+.pricemain {
+    font-weight: bold;
+}
+
+.pricesavings {
+    font-size: 0.9em;
+}
+
+.oldprice {
+    text-decoration:line-through;
+    color: gray;
+    font-size: 0.8em;
+}
+
+.spacer {
+    padding-top: 5px;
+}
+
+.pointsheader {
+    background-color: #bedcff;
+    color: #000000;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+.pointsbody {
+    background-color: white;
+    color: #000000;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+.wollettelogo {
+    padding: 20px;
+}
+
+.pos .modal-dialog header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 101;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+h1.header_cart_price {
+    padding-bottom: 10px;
+}
+
+.btn {
+    background-color: transparent !important;
+    /* border: 1px solid #222222 !important; */
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #0d72e8 !important;
+    cursor: pointer !important;
+    display: block !important; /* Ensure buttons are on separate lines */
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 16px !important;
+    font-weight: 600;
+    line-height: 20px;
+    margin-right: 10px; /* Add margin between buttons */
+    outline: none !important;
+    padding: 6px 23px !important;
+    position: relative;
+    /* text-align: center; */
+    text-decoration: none;
+    touch-action: manipulation;
+    transition: box-shadow .2s, -ms-transform .1s, -webkit-transform .1s, transform .1s;
+    user-select: none;
+    -webkit-user-select: none;
+    width: auto;
+    text-align: left;
+    border: 1px solid #0d72e8 !important;
+}
+
+.couponitem {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.coupon-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.heading {
+    width: 40%;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.content {
+    width: 60%;
+    text-align: left; /* Align content to the left */
+    padding-left: 5%;
+    padding-right: 12%;
+    border-left: 2px solid;
+}
+
+.remove_btn{
+    color: #FF4742 !important;
+}
+
+
+h3.discount_text {
+    color: black;
+    font-weight: 700;
+    font-size: 40px;
+    font-family: sans-serif;
+}
+
+.footer_buttons {
+    display: flex;
+    justify-content: space-between; /* Align items with space between them */
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.footer_left_button {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; /* Align items to the start */
+}
+
+.footer_right_button {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Align items to the end */
+}
+
+/*    position: sticky; */
+.footer {
+    bottom: 0;
+    background-color: #fff;
+    z-index: 1000;
+    padding: 10px 20px;
+    width: auto !important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px -1px 12px;
+    border:0px !important
+}
+
+/*
+.body {
+    overflow-y: auto;
+}
+*/
+.body {
+    flex-grow: 1;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    overflow-y: auto;
+    margin: 16px 16px 0px 16px !important;
+}
+
+.header{
+    display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    min-height: 60px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.header_heading h1 {
+    text-align: start;
+    font-size: 25px;
+}
+.scan_header {
+    width: 100%;
+}
+.scan_header h1 {
+    text-align: center;
+    font-size: 25px;
+}
+.header_cart_price h1 {
+    text-align: end;
+    font-size: 25px;
+}
+
+.header_heading{
+    height:fit-content;
+    width:100%;
+}
+.header_cart_price{
+    height:fit-content;
+    width:130%;
+}
+.logo_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: -16px;
+}
+
+.wollettelogo img {
+    max-width: 220px;
+    max-height: 220px;
+}
+@keyframes l27 {
+    100% {
+        transform: rotate(1turn)
+    }
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.pos_wollette</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='pos_technical_section']" position="after">
+                <div class="row mt16 o_settings_container" id="pos_wollette_discount_product_id_section">
+                    <h2>Wollette Settings</h2>
+                    <div class="col-12 col-lg-6 o_setting_box" title="Discount Product">
+                        <div class="o_setting_right_pane">
+                            <label for="pos_discount_product_id" string="Discount Product"/>
+                            <div class="text-muted">
+                                        Used to create discount lines in the POS order
+                            </div>
+                            <div class="content-group mt16">
+                                <field name="pos_discount_product_id" domain="[('available_in_pos', '=', True)]" attrs="{'required': [('pos_config_id', '!=', False)]}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="pos_api_base_url" string="API Base URL"/>
+                            <div class="text-muted">
+                            Base URL for the Wollette API e.g. https://devapi.wollette.com/api/v1/
+                            </div>
+                            <div class="content-group mt16">
+                                <field name="pos_api_base_url" attrs="{'required': [('pos_config_id', '!=', False)]}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box" title="Database ID">
+                        <div class="o_setting_right_pane">
+                            <label for="pos_database_id" string="Database ID"/>
+                            <div class="text-muted">
+                                        Used when making API calls
+                            </div>
+                            <div class="content-group mt16">
+                                <field name="pos_database_id" attrs="{'required': [('pos_config_id', '!=', False)]}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box" title="Shop Name">
+                        <div class="o_setting_right_pane">
+                            <label for="pos_shop_name" string="Shop Name"/>
+                            <div class="text-muted">
+                                        Used when making API calls
+                            </div>
+                            <div class="content-group mt16">
+                                <field name="pos_shop_name" attrs="{'required': [('pos_config_id', '!=', False)]}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

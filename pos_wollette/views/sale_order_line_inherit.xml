@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_sale_order_line_form_readonly" model="ir.ui.view">
+        <field name="name">sale.order.line.form.readonly.inherit</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly"/>
+        <field name="arch" type="xml">
+            <field name="price_unit" position="after">
+                <field name="product_char" readonly="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>
+
+

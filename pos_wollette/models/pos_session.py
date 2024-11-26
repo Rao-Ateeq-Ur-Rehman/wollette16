@@ -75,9 +75,9 @@ class PosSession(models.Model):
         })
         json_data = order.export_for_wollette()
         print('Order payload: ', payload)
-        res = requests.post(f'{self.pos_api_base_url}staged-transactions/', params=payload, json=json_data)
+        # res = requests.post(f'{self.pos_api_base_url}staged-transactions/', params=payload, json=json_data)
         print('json_data: ', json_data)
-        # res = requests.post(f'{self.pos_api_base_url}staged-transactions/completion', params=payload, json=json_data)
+        res = requests.post(f'{self.pos_api_base_url}staged-transactions/completion', params=payload, json=json_data)
         if not res.ok:
             print('error calling completion api: ', res.text or res.reason )
             raise exceptions.ValidationError(_(res.text or res.reason))

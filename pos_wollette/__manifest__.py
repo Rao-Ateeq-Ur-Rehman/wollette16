@@ -2,7 +2,7 @@
 
 {
     "name": "Wollette Smart POS",
-    "version": "16.5.0.0.0",
+    "version": "16.6.0.0.0",
     "author": "Wollette Ltd",
     "category": "Point Of Sale",
     "license": "Other proprietary",

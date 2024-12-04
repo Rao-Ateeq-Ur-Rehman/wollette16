@@ -17,20 +17,25 @@ _logger = logging.getLogger(__name__)
 class ProductImageController(http.Controller):
 
     @http.route('/custom/image/product/<int:product_id>', type='http', auth='public', csrf=False)
-    def product_image(self, product_id, access_token=None, **kwargs):
-
+    def product_image(self, product_id, **kwargs):
         print('product_image called')
-        # Verify the access token
-        order = request.env['pos.order'].sudo().search([('access_token', '=', access_token)], limit=1)
-        if not order:
-            return request.not_found()
 
-        # image = request.env["pos.order.line"].search([('product_id', '=', product_id)], limit=1)
-        # print('image: ', image.product_image)
+        # Retrieve the access token from the headers
+        # access_token = request.httprequest.headers.get('Authorization')
+        # if not access_token:
+        #     print('NO access toke')
+        #     return request.not_found()
+
+        # Verify the access token
+        # order = request.env['pos.order'].sudo().search([('access_token', '=', access_token)], limit=1)
+        # if not order:
+        #     print('NO Order Found')
+        #     return request.not_found()
 
         # Fetch the product
         product = request.env['product.product'].sudo().browse(product_id)
         if not product.exists():
+            print('NO Product ID Found')
             return request.not_found()
 
         # Get the image data
@@ -102,11 +107,10 @@ class PosOrder(models.Model):
                 'price_unit': line.price_unit,
                 'price_subtotal': line.price_subtotal,
                 'price_subtotal_incl': line.price_subtotal_incl,
-                'product_image_url': '%s/custom/image/product/%d?access_token=%s' % (
-                    base_url, line.product_id.id, self.access_token) if line.price_unit >= 0 else None,
-
-                # 'product_image_url': '%s/web/image/product.product/%d/image_1920?db=%s' % (
-                # base_url, line.product_id.id, db_name) if line.price_unit >= 0 else None,
+                'product_image_url': '%s/custom/image/product/%d' % (
+                    base_url, line.product_id.id) if line.price_unit >= 0 else None,
+                # 'product_image_url': '%s/custom/image/product/%d?access_token=%s' % (
+                #     base_url, line.product_id.id, self.access_token) if line.price_unit >= 0 else None,
             } for line in self.lines],
             'payment_ids': self.get_wollette_payments(),
             'name': self.pos_reference,
